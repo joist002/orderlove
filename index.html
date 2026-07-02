@@ -242,6 +242,107 @@ body{background:var(--ink);color:var(--white);font-family:'Noto Serif TC',serif;
   .drops-row{flex-direction:column;gap:16px;}
 }
 
+
+/* ── TIME PHOTO CARDS ── */
+.time-photo-opt {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 160px;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 0 !important;
+  border: 2px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.time-photo-opt:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,120,220,.35);
+}
+.time-photo-opt.sel {
+  border-color: #54b1f0;
+  box-shadow: 0 0 0 3px rgba(84,177,240,.5), 0 12px 32px rgba(0,120,220,.4);
+}
+.time-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(6,24,50,.85) 0%, rgba(6,24,50,.3) 55%, transparent 100%);
+}
+.time-photo-content {
+  position: absolute; bottom: 16px; left: 0; right: 0;
+  text-align: center;
+}
+.time-photo-lbl {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: .08em;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+}
+.time-photo-range {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,.85);
+  margin-top: 6px;
+  letter-spacing: .06em;
+}
+.time-photo-opt .opt-chk {
+  position: absolute; top: 10px; right: 12px;
+  z-index: 2;
+}
+
+/* ── GLOBAL FONT SIZE BOOST (老花友善) ── */
+body { font-size: 17px; }
+
+/* Step labels */
+.step-lbl { font-size: 13px !important; font-weight: 700 !important; }
+
+/* Question title */
+.q-ttl { font-size: 22px !important; font-weight: 800 !important; }
+
+/* Hint text */
+.q-hint { font-size: 15px !important; font-weight: 500 !important; }
+
+/* Option labels */
+.opt-lbl { font-size: 17px !important; font-weight: 700 !important; }
+
+/* Sub-labels inside opts (inline styles) */
+.opt [style*="font-size:12px"] { font-size: 14px !important; }
+
+/* Input fields */
+input, textarea, select {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+}
+
+/* Input placeholder */
+input::placeholder, textarea::placeholder {
+  font-size: 16px !important;
+}
+
+/* Consent text */
+.ct { font-size: 15px !important; font-weight: 500 !important; line-height: 1.6 !important; }
+
+/* Submit button */
+.btn-submit { font-size: 19px !important; font-weight: 800 !important; letter-spacing: .1em !important; }
+
+/* Sub note */
+.sub-note { font-size: 14px !important; font-weight: 500 !important; }
+
+/* Section header */
+.sec-ttl { font-size: 26px !important; font-weight: 800 !important; }
+.sec-sub  { font-size: 16px !important; font-weight: 500 !important; }
+
+/* Progress bar step text */
+.pb-step { font-size: 12px !important; font-weight: 700 !important; }
+
+/* Slide title & logo */
+.hero-ttl { font-size: clamp(30px, 7vw, 56px) !important; font-weight: 900 !important; }
+.hero-sub  { font-size: clamp(16px, 2.5vw, 20px) !important; font-weight: 600 !important; }
+
 </style>
 </head>
 <body>
@@ -423,15 +524,30 @@ body{background:var(--ink);color:var(--white);font-family:'Noto Serif TC',serif;
       <h2 class="q-text">方便聯繫的時段？</h2>
       <p class="q-hint">設計師會在您方便的時間聯絡</p>
       <div class="opts-grid col3">
-        <div class="opt" data-g="contact_time" data-v="早上"><span class="opt-chk">✦</span>
-          <div class="opt-icon">🌅</div><div class="opt-lbl">早上</div>
-          <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">9–12 時</div></div>
-        <div class="opt" data-g="contact_time" data-v="下午"><span class="opt-chk">✦</span>
-          <div class="opt-icon">☀️</div><div class="opt-lbl">下午</div>
-          <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">13–18 時</div></div>
-        <div class="opt" data-g="contact_time" data-v="晚上"><span class="opt-chk">✦</span>
-          <div class="opt-icon">🌙</div><div class="opt-lbl">晚上</div>
-          <div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">18–21 時</div></div>
+        <div class="opt time-photo-opt" data-g="contact_time" data-v="早上" style="background-image:url('morning.png')">
+          <span class="opt-chk">✦</span>
+          <div class="time-photo-overlay"></div>
+          <div class="time-photo-content">
+            <div class="time-photo-lbl">早上</div>
+            <div class="time-photo-range">9–12 時</div>
+          </div>
+        </div>
+        <div class="opt time-photo-opt" data-g="contact_time" data-v="下午" style="background-image:url('afternoon.png')">
+          <span class="opt-chk">✦</span>
+          <div class="time-photo-overlay"></div>
+          <div class="time-photo-content">
+            <div class="time-photo-lbl">下午</div>
+            <div class="time-photo-range">13–18 時</div>
+          </div>
+        </div>
+        <div class="opt time-photo-opt" data-g="contact_time" data-v="晚上" style="background-image:url('evening.png')">
+          <span class="opt-chk">✦</span>
+          <div class="time-photo-overlay"></div>
+          <div class="time-photo-content">
+            <div class="time-photo-lbl">晚上</div>
+            <div class="time-photo-range">18–21 時</div>
+          </div>
+        </div>
       </div>
       <div class="ifield" style="margin-top:24px">
         <textarea id="msg" placeholder="想跟設計師說的話（選填）"></textarea>
