@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>ODE 歐德家具｜長庚店 系統櫃諮詢</title>
+<title>Order 歐德家具｜長庚店 系統櫃諮詢</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+TC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -343,6 +343,45 @@ input::placeholder, textarea::placeholder {
 .hero-ttl { font-size: clamp(30px, 7vw, 56px) !important; font-weight: 900 !important; }
 .hero-sub  { font-size: clamp(16px, 2.5vw, 20px) !important; font-weight: 600 !important; }
 
+
+/* ── 以上皆可 card gradient ── */
+.time-anytime {
+  background: linear-gradient(135deg,
+    rgba(10,50,100,.9) 0%,
+    rgba(30,90,160,.85) 40%,
+    rgba(70,150,220,.8) 70%,
+    rgba(10,40,80,.9) 100%) !important;
+  background-size: cover !important;
+}
+.time-anytime .time-photo-lbl { font-size: 22px !important; }
+
+/* ── Time grid: 4 cols on desktop, 2×2 on mobile ── */
+.time-grid { grid-template-columns: repeat(4,1fr) !important; }
+@media(max-width:600px){
+  .time-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .time-photo-opt { height: 130px !important; }
+}
+
+/* ── Budget: no-wrap for 30-60 number ── */
+.opt-num { white-space: nowrap; }
+
+/* ── Room/hall/bath labels bigger ── */
+.ifield label {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: var(--sand) !important;
+}
+.ifield input:focus~label,
+.ifield input:not(:placeholder-shown)~label {
+  font-size: 13px !important;
+}
+/* select element labels (房廳衛 above dropdowns) */
+.sel-lbl, .col-lbl {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: var(--sand) !important;
+}
+
 </style>
 </head>
 <body>
@@ -467,15 +506,13 @@ input::placeholder, textarea::placeholder {
       <p class="q-eyebrow">問題 4 / 7</p>
       <h2 class="q-text">預估的預算範圍？</h2>
       <p class="q-hint">不確定也沒關係，我們可以一起討論</p>
-      <div class="opts-grid col4" style="grid-template-columns:repeat(4,1fr);">
-        <div class="opt" data-g="budget" data-v="10萬以下"><span class="opt-chk">✦</span>
-          <div class="opt-num">10</div><div class="opt-lbl">萬以下</div><div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">單件添置</div></div>
-        <div class="opt" data-g="budget" data-v="10–30萬"><span class="opt-chk">✦</span>
-          <div class="opt-num">10–30</div><div class="opt-lbl">萬</div><div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">局部規劃</div></div>
+      <div class="opts-grid col3">
+        <div class="opt" data-g="budget" data-v="30萬以下"><span class="opt-chk">✦</span>
+          <div class="opt-num">30</div><div class="opt-lbl">萬以下</div><div style="font-family:'Inter',sans-serif;font-size:14px;color:var(--caramel);margin-top:4px">局部規劃</div></div>
         <div class="opt" data-g="budget" data-v="30–60萬"><span class="opt-chk">✦</span>
-          <div class="opt-num">30–60</div><div class="opt-lbl">萬</div><div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">多空間整合</div></div>
+          <div class="opt-num" style="white-space:nowrap;font-size:clamp(22px,4vw,36px)">30–60</div><div class="opt-lbl">萬</div><div style="font-family:'Inter',sans-serif;font-size:14px;color:var(--caramel);margin-top:4px">多空間整合</div></div>
         <div class="opt" data-g="budget" data-v="60萬以上"><span class="opt-chk">✦</span>
-          <div class="opt-num">60+</div><div class="opt-lbl">萬以上</div><div style="font-family:'Inter',sans-serif;font-size:12px;color:var(--caramel);margin-top:4px">全室客製</div></div>
+          <div class="opt-num">60+</div><div class="opt-lbl">萬以上</div><div style="font-family:'Inter',sans-serif;font-size:14px;color:var(--caramel);margin-top:4px">全室客製</div></div>
       </div>
       <button class="btn-next" id="next4" onclick="goNext()" disabled><span>下一題 →</span></button>
     </div>
@@ -494,6 +531,8 @@ input::placeholder, textarea::placeholder {
         <div class="tag" data-g="style" data-v="日式無印">日式無印</div>
         <div class="tag" data-g="style" data-v="工業風">工業風</div>
         <div class="tag" data-g="style" data-v="美式鄉村">美式鄉村</div>
+        <div class="tag" data-g="style" data-v="侘寂風">侘寂風</div>
+        <div class="tag" data-g="style" data-v="奶油風">奶油風</div>
         <div class="tag" data-g="style" data-v="不確定">不確定，想聽建議</div>
       </div>
       <button class="btn-next" id="next5" onclick="goNext()" disabled><span>下一題 →</span></button>
@@ -523,7 +562,7 @@ input::placeholder, textarea::placeholder {
       <p class="q-eyebrow">問題 7 / 7</p>
       <h2 class="q-text">方便聯繫的時段？</h2>
       <p class="q-hint">設計師會在您方便的時間聯絡</p>
-      <div class="opts-grid col3">
+      <div class="opts-grid col4 time-grid">
         <div class="opt time-photo-opt" data-g="contact_time" data-v="早上" style="background-image:url('morning.png')">
           <span class="opt-chk">✦</span>
           <div class="time-photo-overlay"></div>
@@ -537,7 +576,7 @@ input::placeholder, textarea::placeholder {
           <div class="time-photo-overlay"></div>
           <div class="time-photo-content">
             <div class="time-photo-lbl">下午</div>
-            <div class="time-photo-range">13–18 時</div>
+            <div class="time-photo-range">12–18 時</div>
           </div>
         </div>
         <div class="opt time-photo-opt" data-g="contact_time" data-v="晚上" style="background-image:url('evening.png')">
@@ -546,6 +585,14 @@ input::placeholder, textarea::placeholder {
           <div class="time-photo-content">
             <div class="time-photo-lbl">晚上</div>
             <div class="time-photo-range">18–21 時</div>
+          </div>
+        </div>
+        <div class="opt time-photo-opt time-anytime" data-g="contact_time" data-v="以上皆可">
+          <span class="opt-chk">✦</span>
+          <div class="time-photo-overlay"></div>
+          <div class="time-photo-content">
+            <div class="time-photo-lbl">以上皆可</div>
+            <div class="time-photo-range">彈性配合</div>
           </div>
         </div>
       </div>
@@ -569,7 +616,7 @@ input::placeholder, textarea::placeholder {
       <div class="s-ring">✦</div>
       <h2 class="s-ttl">感謝您的諮詢</h2>
       <div class="s-div"></div>
-      <p class="s-sub">我們已收到您的資料<br>長庚店設計師將於 24 小時內與您聯繫<br><br><span style="color:var(--sand)">ODE 歐德家具 長庚店</span></p>
+      <p class="s-sub">我們已收到您的資料<br>長庚店設計師將於 24 小時內與您聯繫<br><br><span style="color:var(--sand)">Order 歐德家具長庚店</span></p>
     </div>
   </div>
 
